@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's That Material Icon?</title>
+  <link rel="icon" href="favicon.ico">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Roboto Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+  <script src="iconLists.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <div class="title">
+      <span id="title">What's That Material Icon?</span>
+    </div>
+    <div class="game">
+      <div class="icon-text">
+        <span id="icon-text">some_poorly_named_icon</span>
+      </div>
+      <div class="stats">
+        <span>Score: <span id="score">-</span></span>
+        <span>Highcore: <span id="highscore">0</span></span>
+      </div>
+      <div class="time-remaining-bar">
+        <div id="time-bar"></div>
+      </div>
+      <form id="guess-form">
+        <label for="" class="guess-icon material-icons">landscape</label>
+        <label for="" class="guess-icon material-icons">category</label>
+        <label for="" class="guess-icon material-icons">location_on</label>
+        <label for="" class="guess-icon material-icons">flight_takeoff</label>
+        <label for="" class="guess-icon material-icons">translate</label>
+        <label for="" class="guess-icon material-icons">sell</label>
+        <label for="" class="guess-icon material-icons">notifications</label>
+        <label for="" class="guess-icon material-icons">draw</label>
+      </form>
+      <div class="control-buttons">
+        <input type="button" id="start-button" value="Start" onclick="startGame()">
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
