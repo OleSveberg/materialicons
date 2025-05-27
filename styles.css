@@ -5,6 +5,8 @@
   --bg-container: #ffb8b8;
   --bg-container-hover: #ea9a9a;
   --txt-main: #441010;
+
+  font-size: 16px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,6 +18,17 @@
   }
 }
 
+@media screen and (max-width: 550px) {
+  :root {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 400px) {
+  :root {
+    font-size: 9px;
+  }
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -23,11 +36,21 @@ body {
   filter: hue-rotate(var(--random-hue));
 
   &::selection {
-    color: var(--bg-container);
+    color: var(--bg-main);
     background-color: var(--txt-main);
   }
 }
-.page {
+.nav {
+  position: absolute;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+  top: 0;
+  left: 0;
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
+}
+.main {
   width: 100%;
   height: 100%;
   display: flex;
@@ -35,6 +58,20 @@ body {
   align-items: center;
   color: var(--txt-main);
   background-color: var(--bg-main);
+}
+
+.nav-button {
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  color: var(--bg-main);
+  background-color: var(--bg-container);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--bg-container-hover);
+  }
 }
 
 .title {
@@ -47,6 +84,7 @@ body {
   font-family: 'Roboto Mono', monospace;
   font-size: 3rem;
   font-weight: 900;
+  text-align: center;
 }
 
 .game {
@@ -105,14 +143,16 @@ body {
   -webkit-user-select: none;
   user-select: none;
 }
-.guess-icon {
+#guess-form input {
   font-size: 4rem;
   padding: 1rem;
+  color: var(--txt-main);
   background-color: var(--bg-container);
   border-radius: 1rem;
+  border: none;
   transition: background-color 0.1s;
 }
-.clickable {
+#guess-form input.clickable {
   cursor: pointer;
 
   &:hover {
@@ -150,7 +190,7 @@ body {
 
   &:hover {
     color: var(--txt-main);
-    background-color: var(--bg-container);        
+    background-color: var(--bg-container-hover);        
   }
   &:active {
     margin-top: 2px;

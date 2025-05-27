@@ -18,7 +18,11 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="page">
+  <div class="nav">
+    <input type="button" class="material-icons nav-button" value="settings" onclick="console.log('settings')">
+    <input type="button" class="material-icons nav-button" value="question_mark" onclick="console.log('help')">
+  </div>
+  <div class="main">
     <div class="title">
       <span id="title">What's That Material Icon?</span>
     </div>
@@ -34,14 +38,14 @@
         <div id="time-bar"></div>
       </div>
       <form id="guess-form">
-        <label for="" class="guess-icon material-icons">landscape</label>
-        <label for="" class="guess-icon material-icons">category</label>
-        <label for="" class="guess-icon material-icons">location_on</label>
-        <label for="" class="guess-icon material-icons">flight_takeoff</label>
-        <label for="" class="guess-icon material-icons">translate</label>
-        <label for="" class="guess-icon material-icons">sell</label>
-        <label for="" class="guess-icon material-icons">notifications</label>
-        <label for="" class="guess-icon material-icons">draw</label>
+        <input type="button" id="guess-button-0" class="material-icons" value="landscape" onclick="handleGuess(0)">
+        <input type="button" id="guess-button-1" class="material-icons" value="category" onclick="handleGuess(1)">
+        <input type="button" id="guess-button-2" class="material-icons" value="location_on" onclick="handleGuess(2)">
+        <input type="button" id="guess-button-3" class="material-icons" value="flight_takeoff" onclick="handleGuess(3)">
+        <input type="button" id="guess-button-4" class="material-icons" value="translate" onclick="handleGuess(4)">
+        <input type="button" id="guess-button-5" class="material-icons" value="sell" onclick="handleGuess(5)">
+        <input type="button" id="guess-button-6" class="material-icons" value="notifications" onclick="handleGuess(6)">
+        <input type="button" id="guess-button-7" class="material-icons" value="draw" onclick="handleGuess(7)">
       </form>
       <div class="control-buttons">
         <input type="button" id="start-button" value="Start" onclick="startGame()">
