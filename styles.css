@@ -12,8 +12,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-main: #000000;
-    --bg-container: #2a1818;
-    --bg-container-hover: #463232;
+    --bg-container: #321818;
+    --bg-container-hover: #5a2a2a;
     --txt-main: #ffe0e0;
   }
 }
@@ -66,11 +66,11 @@ body {
   font-size: 1.5rem;
   padding: 0.5rem;
   color: var(--bg-main);
-  background-color: var(--bg-container);
+  background-color: var(--bg-container-hover);
   cursor: pointer;
 
   &:hover {
-    background-color: var(--bg-container-hover);
+    background-color: var(--txt-main);
   }
 }
 
