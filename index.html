@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What's That Material Icon?</title>
+  <title>What's That Icon?</title>
   <link rel="icon" href="favicon.ico">
 
   <!-- Material Icons -->
@@ -18,18 +18,111 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="nav">
-    <input type="button" class="material-icons nav-button" value="settings" onclick="console.log('settings')">
-    <input type="button" class="material-icons nav-button" value="question_mark" onclick="console.log('help')">
+  <div id="overlay" class="overlay" hidden>
+    <div id="settings-overlay" class="overlay-page">
+      <span class="overlay-title">Settings</span>
+      <div class="overlay-content">
+        <span class="setting-description">Gamemode</span>
+        <form class="difficulty-form">
+          <input type="radio" name="difficulty" id="difficulty-0" value="0" hidden>
+          <label for="difficulty-0" class="difficulty-label">Easy</label>
+          <input type="radio" name="difficulty" id="difficulty-1" value="1" hidden>
+          <label for="difficulty-1" class="difficulty-label">Medium</label>
+          <input type="radio" name="difficulty" id="difficulty-2" value="2" hidden>
+          <label for="difficulty-2" class="difficulty-label">Hard</label>
+          <input type="radio" name="difficulty" id="difficulty-3" value="3" hidden>
+          <label for="difficulty-3" class="difficulty-label">All Icons</label>
+        </form>
+        <span class="setting-description">Theme & Colors</span>
+        <form class="theme-form">
+          <input type="radio" name="theme" id="theme-0" value="0" hidden>
+          <label for="theme-0" class="theme-label">Light</label>
+          <input type="radio" name="theme" id="theme-1" value="1" hidden>
+          <label for="theme-1" class="theme-label">Dark</label>
+          <input type="radio" name="theme" id="theme-2" value="2" hidden>
+          <label for="theme-2" class="theme-label">Auto</label>
+        </form>
+      </div>
+      <input type="button" class="ui-button" value="Close" onclick="saveSettings()">
+    </div>
+    <div id="stats-overlay" class="overlay-page">
+      <span class="overlay-title">Statistics</span>
+      <div class="overlay-content">
+        <table class="stat-list-1">
+          <tbody>
+            <tr>
+              <td class="stat-description"><span>Most Played Mode</span></td>
+              <td><span id="stat-mostplayedmode">-</span></td>
+            </tr>
+            <tr>
+              <td class="stat-description"><span>Unique Icons Guessed</span></td>
+              <td><span id="stat-uniqueiconsguessed">- / -</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <table class="stat-list-2">
+          <tbody>
+            <tr>
+              <th><span></span></th>
+              <th><span>Total</span></th>
+              <th><span>Easy</span></th>
+              <th><span>Medium</span></th>
+              <th><span>Hard</span></th>
+              <th><span>All Icons</span></th>
+            </tr>
+            <tr>
+              <td class="stat-description"><span>Highscore</span></td>
+              <td></td>
+              <td><span id="stat-highscore-easy">-</span></td>
+              <td><span id="stat-highscore-medium">-</span></td>
+              <td><span id="stat-highscore-hard">-</span></td>
+              <td><span id="stat-highscore-allicons">-</span></td>
+            </tr>
+            <tr>
+              <td class="stat-description"><span>Time played</span></td>
+              <td><span id="stat-timeplayed-total">-</span></td>
+              <td><span id="stat-timeplayed-easy">-</span></td>
+              <td><span id="stat-timeplayed-medium">-</span></td>
+              <td><span id="stat-timeplayed-hard">-</span></td>
+              <td><span id="stat-timeplayed-allicons">-</span></td>
+            </tr>
+            <tr>
+              <td class="stat-description"><span>Games Played</span></td>
+              <td><span id="stat-gamesplayed-total">-</span></td>
+              <td><span id="stat-gamesplayed-easy">-</span></td>
+              <td><span id="stat-gamesplayed-medium">-</span></td>
+              <td><span id="stat-gamesplayed-hard">-</span></td>
+              <td><span id="stat-gamesplayed-allicons">-</span></td>
+            </tr>
+            <tr>
+              <td class="stat-description"><span>Correct Guesses</span></td>
+              <td><span id="stat-correctguesses-total">-</span></td>
+              <td><span id="stat-correctguesses-easy">-</span></td>
+              <td><span id="stat-correctguesses-medium">-</span></td>
+              <td><span id="stat-correctguesses-hard">-</span></td>
+              <td><span id="stat-correctguesses-allicons">-</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <input type="button" class="ui-button" value="Back" onclick="toggleOverlay()">
+    </div>
+    <div id="pause-overlay" class="overlay-page">
+      <span class="overlay-title">Game Paused</span>
+      <br>
+      <input type="button" class="ui-button" value="Resume" onclick="resumeGame()">
+    </div>
   </div>
   <div class="main">
-    <div class="title">
-      <span id="title">What's That Material Icon?</span>
+    <div class="title-holder">
+      <span id="title">What's That Icon?</span>
     </div>
     <div class="game">
       <div class="icon-text">
         <span id="icon-text">some_poorly_named_icon</span>
       </div>
+
       <div class="stats">
         <span>Score: <span id="score">-</span></span>
         <span>Highcore: <span id="highscore">0</span></span>
@@ -38,17 +131,27 @@
         <div id="time-bar"></div>
       </div>
       <form id="guess-form">
-        <input type="button" id="guess-button-0" class="material-icons" value="landscape" onclick="handleGuess(0)">
-        <input type="button" id="guess-button-1" class="material-icons" value="category" onclick="handleGuess(1)">
-        <input type="button" id="guess-button-2" class="material-icons" value="location_on" onclick="handleGuess(2)">
-        <input type="button" id="guess-button-3" class="material-icons" value="flight_takeoff" onclick="handleGuess(3)">
-        <input type="button" id="guess-button-4" class="material-icons" value="translate" onclick="handleGuess(4)">
-        <input type="button" id="guess-button-5" class="material-icons" value="sell" onclick="handleGuess(5)">
-        <input type="button" id="guess-button-6" class="material-icons" value="notifications" onclick="handleGuess(6)">
-        <input type="button" id="guess-button-7" class="material-icons" value="draw" onclick="handleGuess(7)">
+        <input type="button" id="guess-button-0" class="material-icons disabled" value="landscape" onclick="handleGuess(0)">
+        <input type="button" id="guess-button-1" class="material-icons disabled" value="category" onclick="handleGuess(1)">
+        <input type="button" id="guess-button-2" class="material-icons disabled" value="location_on" onclick="handleGuess(2)">
+        <input type="button" id="guess-button-3" class="material-icons disabled" value="flight_takeoff" onclick="handleGuess(3)">
+        <input type="button" id="guess-button-4" class="material-icons disabled" value="translate" onclick="handleGuess(4)">
+        <input type="button" id="guess-button-5" class="material-icons disabled" value="sell" onclick="handleGuess(5)">
+        <input type="button" id="guess-button-6" class="material-icons disabled" value="notifications" onclick="handleGuess(6)">
+        <input type="button" id="guess-button-7" class="material-icons disabled" value="draw" onclick="handleGuess(7)">
       </form>
       <div class="control-buttons">
-        <input type="button" id="start-button" value="Start" onclick="startGame()">
+        <div id="menu-buttons" class="control-button-group">
+          <input type="button" class="material-icons ui-button-secondary" value="leaderboard" onclick="toggleOverlay('stats')" title="Stats">
+          <!-- <input type="button" class="material-icons ui-button-secondary" value="question_mark" onclick="console.log('help')" title="Help"> -->
+          <input type="button" id="start-button" class="ui-button" value="Start" onclick="startGame()">
+          <!-- <input type="button" class="material-icons ui-button-secondary" value="question_mark" onclick="console.log('help')" title="Help"> -->
+          <input type="button" class="material-icons ui-button-secondary" value="settings" onclick="toggleOverlay('settings')" title="Open Settings">
+        </div>
+        <div id="game-buttons" class="control-button-group" hidden>
+          <input type="button" class="ui-button" value="Pause" onclick="pauseGame()">
+          <input type="button" class="ui-button" value="Give Up" onclick="stopGame()">
+        </div>
       </div>
     </div>
   </div>

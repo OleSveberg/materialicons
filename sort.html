@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="iconLists.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      gap: 32px;
+    }
+    .display-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      margin-bottom: 32px;
+    }
+    .display-icon span {
+      display: block;
+    }
+    #icon-id {
+      font-size: 16px;
+      font-family: monospace;
+    }
+    #icon {
+      font-size: 64px;
+    }
+    #icon-name {
+      font-size: 32px;
+    }
+    .selected-grade {
+      background-color: #fbb;
+    }
+    .grade-buttons {
+      display: flex;
+      gap: 16px
+    }
+    .grade-buttons input {
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+    }
+    .nav-buttons, .ui-buttons {
+      display: flex;
+      gap: 16px;
+    }
+
+    #graph {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: end;
+      width: 1118px;
+      gap: 32px 0;
+      background-color: #fff;
+    }
+    .ge {
+      display: block;
+      width: 2px;
+      height: 2px;
+    }
+    .ge--1 {background-color: #f66; margin-bottom: 0px; margin-top: 20px;}
+    .ge-0 {background-color: #0f0; margin-bottom: 2px; margin-top: 18px;}
+    .ge-1 {background-color: #0e0; margin-bottom: 4px; margin-top: 16px;}
+    .ge-2 {background-color: #0d0; margin-bottom: 6px; margin-top: 14px;}
+    .ge-3 {background-color: #0c0; margin-bottom: 8px; margin-top: 12px;}
+    .ge-4 {background-color: #0b0; margin-bottom: 10px; margin-top: 10px;}
+    .ge-5 {background-color: #0a0; margin-bottom: 12px; margin-top: 8px;}
+    .ge-6 {background-color: #090; margin-bottom: 14px; margin-top: 6px;}
+    .ge-7 {background-color: #070; margin-bottom: 16px; margin-top: 4px;}
+    .ge-8 {background-color: #040; margin-bottom: 18px; margin-top: 2px;}
+    .ge-9 {background-color: #010; margin-bottom: 20px; margin-top: 0px;}
+    #ge-current {margin-bottom: 0; margin-top: 0; background-color: #05f; height: 22px;}
+  </style>
+</head>
+<body>
+  <div class="display-icon">
+    <span id="icon-id"></span>
+    <span id="icon" class="material-icons"></span>
+    <span id="icon-name"></span>
+  </div>
+  <div class="grade-buttons">
+    <input type="button" id="grade--1" value="-" onclick="grade(-1)">
+    <input type="button" id="grade-0" value="0" onclick="grade(0)">
+    <input type="button" id="grade-1" value="1" onclick="grade(1)">
+    <input type="button" id="grade-2" value="2" onclick="grade(2)">
+    <input type="button" id="grade-3" value="3" onclick="grade(3)">
+    <input type="button" id="grade-4" value="4" onclick="grade(4)">
+    <input type="button" id="grade-5" value="5" onclick="grade(5)">
+    <input type="button" id="grade-6" value="6" onclick="grade(6)">
+    <input type="button" id="grade-7" value="7" onclick="grade(7)">
+    <input type="button" id="grade-8" value="8" onclick="grade(8)">
+    <input type="button" id="grade-9" value="9" onclick="grade(9)">
+  </div>
+  <div class="nav-buttons">
+    <input type="button" value="< 20" onclick="navigate(-20)">
+    <input type="button" value="< 1" onclick="navigate(-1)">
+    <input type="button" value="1 >" onclick="navigate(1)">
+    <input type="button" value="20 >" onclick="navigate(20)">
+  </div>
+  <div class="ui-buttons">
+    <input type="button" value="print graded list" onclick="print()">
+    <input type="button" value="go to start" onclick="navigate(-currentIcon)">
+    <input type="button" value="reset grading" onclick="reset()">
+  </div>
+
+  <div id="graph"></div>
+  <script>
+    const displayedId = document.getElementById("icon-id");
+    const displayedIcon = document.getElementById("icon");
+    const displayedName = document.getElementById("icon-name");
+    const gradeGraph = document.getElementById("graph");
+
+    let currentIcon = parseInt(localStorage.getItem("wti_sort_currentItem")) || 0;
+    localStorage.setItem("wti_sort_currentItem", currentIcon);
+
+    let list = JSON.parse(localStorage.getItem("wti_sort_list")) || null;
+    if (!list) initializeList();
+    
+    display(currentIcon);
+
+    function display() {
+      displayedId.innerText = list[currentIcon].id;
+      displayedIcon.innerText = list[currentIcon].name;
+      displayedName.innerText = "...";
+      setTimeout(displayName, 0);
+      generateGraph();
+      updateGradeButtons();
+    }
+    function displayName() {
+      displayedName.innerText = list[currentIcon].name;
+    }
+    function generateGraph() {
+      let html = "";
+      for (i = 0; i < list.length; i++) {
+        let grade = list[i].difficulty;
+        html += `<div ${i == currentIcon ? "id='ge-current'" : ""} class='ge ge-${grade}'></div>`;
+      }
+      gradeGraph.innerHTML = html;
+    }
+    function navigate(value) {
+      currentIcon += value;
+      if (currentIcon < 0) currentIcon = materialIconsAll.length + currentIcon;
+      if (currentIcon >= materialIconsAll.length) currentIcon = currentIcon - materialIconsAll.length;
+      localStorage.setItem("wti_sort_currentItem", currentIcon);
+      display();
+    }
+    function grade(value) {
+      list[currentIcon].difficulty = value;
+      localStorage.setItem("wti_sort_list", JSON.stringify(list));
+      navigate(1);
+    }
+    function updateGradeButtons() {
+      for (i = -1; i < 10; i++) {
+        document.getElementById(`grade-${i}`).classList.remove("selected-grade");
+      }
+      document.getElementById(`grade-${list[currentIcon].difficulty}`).classList.add("selected-grade");
+    }
+    function print() {
+      console.log(list);
+    }
+    function reset() {
+      if (confirm("Reset all difficulty grading list? This action cannot be undone.")) {
+        currentIcon = 0;
+        localStorage.setItem("wti_sort_currentItem", currentIcon);
+
+        initializeList();
+        display();
+      }
+    }
+    function initializeList() {
+      console.log("icon list is empty!");
+      list = [];
+      for (i = 0; i < materialIconsAll.length; i++) {
+        list.push({
+          id: i,
+          name: materialIconsAll[i],
+          difficulty: -1
+        });
+      }
+      localStorage.setItem("wti_sort_list", JSON.stringify(list));
+    }
+  </script>
+</body>
+</html>
