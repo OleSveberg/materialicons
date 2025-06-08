@@ -36,7 +36,7 @@
   --bg-container-accent: #3d1b1b;
   --bg-settings: #00000088;
   --txt-main: #ffe0e0;
-  --txt-main: #ffe0e088;
+  --txt-light: #ffe0e044;
 }
 @media (prefers-color-scheme: dark) {
   [color-theme="auto"] {
@@ -45,7 +45,7 @@
     --bg-container-accent: #3d1b1b;
     --bg-settings: #00000088;
     --txt-main: #ffe0e0;
-    --txt-main: #ffe0e088;
+    --txt-light: #ffe0e044;
   }
 }
 

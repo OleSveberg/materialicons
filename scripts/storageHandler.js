@@ -31,7 +31,7 @@ function localStorageInit() {
       theme: "auto", // Set default theme to Auto
     },
     stats: {
-      icons: new Array(gradedIconList.length).fill(0), // Unique correct icons guessed
+      icons: new Array(rawIconList.length).fill(0), // Unique correct icons guessed
       highscore: [0, 0, 0, 0], // Per gamemode, in order: [Easy, Medium, Hard, All Icons]
       time: [0, 0, 0, 0], // Time spent playing in ms
       rounds: [0, 0, 0, 0], // Number of rounds played

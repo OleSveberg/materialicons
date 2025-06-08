@@ -90,8 +90,10 @@ function stopGame() {
     }
   }
 
+  console.log("["+ currentGamemode +"] score: "+ currentScore +", highscore: "+ highscore)
   if (currentScore > highscore) {
-    updateHighscore(highscore, currentGamemode);
+    console.log("calling updateHighscore...")
+    updateHighscore(currentScore, currentGamemode);
   }
 }
 function incrementTimer() {
