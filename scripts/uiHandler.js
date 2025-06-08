@@ -70,7 +70,10 @@ function toggleOverlay(action) {
   }
   if (action == "settings") settingsOverlay.hidden = false;
   else if (action == "pause") pauseOverlay.hidden = false;
-  else if (action == "stats") statsOverlay.hidden = false;
+  else if (action == "stats") {
+    loadStatPage();
+    statsOverlay.hidden = false;
+  }
   else return;
   overlay.hidden = false;
 }

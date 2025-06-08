@@ -344,7 +344,7 @@ tr {
   text-align: left;
   font-weight: 500;
   font-style: normal;
-  width: 26rem;
+  width: 20rem;
 }
 
 table.stat-list-2 th {
@@ -354,14 +354,14 @@ table.stat-list-2 th {
 }
 .stat-list-2 td {
   text-align: center;
-  font-weight: 700;
+  font-weight: 400;
   font-style: italic;
-  width: 4.5rem;
+  width: 5rem;
 }
 .stat-list-2 td.stat-description {
   text-align: left;
   font-weight: 500;
-    font-style: normal;
+  font-style: normal;
   width: 10rem;
 }
 

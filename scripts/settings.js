@@ -4,7 +4,6 @@ let currentTheme;
 function loadSettings() {
   setGamemode(ls.settings.gamemode);
   setTheme(ls.settings.theme);
-  console.log("gm: "+ currentGamemode +"   theme: "+ currentTheme);
 
   document.getElementById(`gamemode-${currentGamemode}`).checked = true;
   document.getElementById(`theme-${currentTheme}`).checked = true;
@@ -14,6 +13,7 @@ function setGamemode(value) {
   currentGamemode = value;
   setHighscore(ls.stats.highscore[currentGamemode], currentGamemode);
 }
+
 function setTheme(value) {
   currentTheme = value;
   document.documentElement.setAttribute("color-theme", currentTheme);

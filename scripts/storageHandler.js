@@ -40,6 +40,7 @@ function localStorageInit() {
   };
   updateLocalStorage();
 }
+
 function deleteData() {
   if (confirm("Are you sure you want to reset all data?")) {
     localStorageInit();

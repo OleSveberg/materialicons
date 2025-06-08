@@ -67,14 +67,17 @@ function startGame() {
     element.classList.add("clickable");
   }
 }
+
 function pauseGame() {
   clearInterval(countDownTime);
   toggleOverlay("pause");
 }
+
 function resumeGame() {
   countDownTime = setInterval(incrementTimer, tickRate);
   toggleOverlay();
 }
+
 function stopGame() {
   gameState = "stopped";
   clearInterval(countDownTime);
@@ -97,12 +100,14 @@ function stopGame() {
 
   updateStats();
 }
+
 function incrementTimer() {
   totalGameTime += tickRate;
   timeRemaining -= tickRate;
   timeRemainingBar.style.width = (timeRemaining * 100 / timeForQuestion) + '%';
   if (timeRemaining <= 0) stopGame();
 }
+
 function newQuestion() {
   let gamemodeList = gamemodeProperties[currentGamemode].iconList.slice(); // Alternatives for correct icon
   let fullList = gradedIconList.slice(); // Alternatives for incorrect icons
@@ -140,6 +145,7 @@ function newQuestion() {
   timeRemainingBar.style.width = '100%';
   countDownTime = setInterval(incrementTimer, tickRate);
 }
+
 function guess(value) {
   if (gameState != "playing") return;
 
@@ -162,6 +168,7 @@ function guess(value) {
     stopGame();
   }
 }
+
 function updateStats() {
   console.log("updating stats")
   updateUniqueIcons(guessedIds);
