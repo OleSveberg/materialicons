@@ -6,7 +6,7 @@
   <title>Document</title>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="iconLists.js"></script>
+  <script src="scripts/iconLists.js"></script>
   <style>
     body {
       display: flex;
@@ -110,6 +110,7 @@
     <input type="button" value="20 >" onclick="navigate(20)">
   </div>
   <div class="ui-buttons">
+    <input type="button" value="print filtered list" onclick="printFilteredList()">
     <input type="button" value="print graded list" onclick="print()">
     <input type="button" value="go to start" onclick="navigate(-currentIcon)">
     <input type="button" value="reset grading" onclick="reset()">
@@ -168,7 +169,31 @@
       document.getElementById(`grade-${list[currentIcon].difficulty}`).classList.add("selected-grade");
     }
     function print() {
+      // Print grading distribution
+      let dist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      for (i = 0; i < list.length; i++) {
+        dist[list[i].difficulty]++;
+      }
+      console.log("difficulty distribution:");
+      console.log(dist);
+      // Print raw list
+      console.log("all graded icons:");
       console.log(list);
+    }
+    function printFilteredList() {
+      let newList = [];
+      for(e of gradedIconList) {
+        // Filter based on difficulty rating
+        if (e.difficulty >= 6 && e.difficulty <= 9) {
+          item = {
+            id: e.id,
+            name: e.name,
+            difficulty: e.difficulty
+          }
+          newList.push(item);
+        }
+      }
+      console.log(newList);
     }
     function reset() {
       if (confirm("Reset all difficulty grading list? This action cannot be undone.")) {
@@ -182,10 +207,10 @@
     function initializeList() {
       console.log("icon list is empty!");
       list = [];
-      for (i = 0; i < materialIconsAll.length; i++) {
+      for (i = 0; i < gradedIconList.length; i++) {
         list.push({
           id: i,
-          name: materialIconsAll[i],
+          name: gradedIconList[i].name,
           difficulty: -1
         });
       }

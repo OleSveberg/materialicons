@@ -6,41 +6,70 @@
   --bg-container-accent: #ea9a9a;
   --bg-settings: #ffffff44;
   --txt-main: #441010;
+  --txt-light: #44101088;
 
   font-size: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-main: #000000;
-    --bg-container: #5a2a2a;
-    --bg-container-accent: #3d1b1b;
-    --bg-settings: #00000044;
-    --txt-main: #ffe0e0;
+[color-theme="light"] {
+  --bg-main: #ffe0e0;
+  --bg-container: #ffb8b8;
+  --bg-container-accent: #ea9a9a;
+  --bg-settings: #ffffff44;
+  --txt-main: #441010;
+  --txt-light: #44101088;
+}
+@media (prefers-color-scheme: light) {
+  [color-theme="auto"] {
+    --bg-main: #ffe0e0;
+    --bg-container: #ffb8b8;
+    --bg-container-accent: #ea9a9a;
+    --bg-settings: #ffffff44;
+    --txt-main: #441010;
+    --txt-light: #44101088;
   }
 }
 
-@media screen and (max-width: 550px) {
+[color-theme="dark"] {
+  --bg-main: #000000;
+  --bg-container: #5a2a2a;
+  --bg-container-accent: #3d1b1b;
+  --bg-settings: #00000088;
+  --txt-main: #ffe0e0;
+  --txt-main: #ffe0e088;
+}
+@media (prefers-color-scheme: dark) {
+  [color-theme="auto"] {
+    --bg-main: #000000;
+    --bg-container: #5a2a2a;
+    --bg-container-accent: #3d1b1b;
+    --bg-settings: #00000088;
+    --txt-main: #ffe0e0;
+    --txt-main: #ffe0e088;
+  }
+}
+
+@media screen and (max-width: 620px) {
   :root {
     font-size: 12px;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 460px) {
   :root {
     font-size: 9px;
   }
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 350px) {
   :root {
     font-size: 7px;
   }
 }
-@media screen and (max-width: 240px) {
+@media screen and (max-width: 280px) {
   :root {
     font-size: 6px;
   }
 }
-@media screen and (max-width: 200px) {
+@media screen and (max-width: 240px) {
   :root {
     font-size: 5px;
   }
@@ -68,10 +97,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   color: var(--txt-main);
   background-color: var(--bg-settings);
-  -webkit-backdrop-filter: blur(0.75rem);
-  backdrop-filter: blur(0.75rem) ;
+  -webkit-backdrop-filter: blur(1rem);
+  backdrop-filter: blur(1rem) ;
 }
 .main {
   width: 100%;
@@ -84,7 +114,6 @@ body {
 }
 
 .overlay-page {
-  margin-top: 15rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,13 +241,10 @@ body {
   align-items: center;
   gap: 1rem;
 }
-[hidden] {
-  display: none;
-}
+
 .ui-button {
   width: 13rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0;
   color: var(--bg-main);
   background-color: var(--txt-main);
   border: none;
@@ -247,12 +273,30 @@ body {
     background-color: var(--bg-container);
   }
 }
+.ui-button-warning {
+  margin: 1rem 0;
+  width: 13rem;
+  padding: 0.5rem 0;
+  color: var(--txt-light);
+  border: 0.125rem dashed var(--txt-light);
+  background-color: transparent;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    color: var(--txt-main);
+    border: 0.125rem dashed var(--txt-main);
+  }
+}
 
 .setting-description {
   font-size: 1.5rem;
   font-weight: 700;
 }
-.difficulty-form, .theme-form {
+.gamemode-form, .theme-form {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -261,7 +305,7 @@ body {
   user-select: none;
   margin-bottom: 3rem;
 }
-.difficulty-label, .theme-label {
+.gamemode-label, .theme-label {
   background-color: transparent;
   padding: 0.25rem 0;
   font-size: 1.25rem;
@@ -273,7 +317,7 @@ body {
     opacity: 100%;
   }
 }
-input[type='radio']:checked + label.difficulty-label, input[type='radio']:checked + label.theme-label {
+input[type='radio']:checked + label.gamemode-label, input[type='radio']:checked + label.theme-label {
   text-decoration: underline;
   text-underline-offset: 0.5rem;
   text-decoration-thickness: 0.25rem;
@@ -319,4 +363,8 @@ table.stat-list-2 th {
   font-weight: 500;
     font-style: normal;
   width: 10rem;
+}
+
+[hidden] {
+  display: none;
 }
