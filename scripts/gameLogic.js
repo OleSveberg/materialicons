@@ -39,13 +39,18 @@ let countDownTime;
 let timeForQuestion;
 let timeRemaining;
 
+let totalGameTime;
+let guessedIds = [];
+
 function loadGame() {
   highscore = ls.stats.highscore[currentGamemode];
 }
 
 function startGame() {
   gameState = "playing";
+  totalGameTime = 0;
   timeForQuestion = gamemodeProperties[currentGamemode].defaultTime;
+  guessedIds = [];
 
   for (i = 0; i < numberOfAlternatives; i++) {
     document.getElementById(`guess-button-${i}`).classList.remove("disabled");
@@ -90,13 +95,10 @@ function stopGame() {
     }
   }
 
-  console.log("["+ currentGamemode +"] score: "+ currentScore +", highscore: "+ highscore)
-  if (currentScore > highscore) {
-    console.log("calling updateHighscore...")
-    updateHighscore(currentScore, currentGamemode);
-  }
+  updateStats();
 }
 function incrementTimer() {
+  totalGameTime += tickRate;
   timeRemaining -= tickRate;
   timeRemainingBar.style.width = (timeRemaining * 100 / timeForQuestion) + '%';
   if (timeRemaining <= 0) stopGame();
@@ -135,7 +137,6 @@ function newQuestion() {
   // question timer
   clearInterval(countDownTime);
   timeRemaining = timeForQuestion;
-  console.log(timeForQuestion)
   timeRemainingBar.style.width = '100%';
   countDownTime = setInterval(incrementTimer, tickRate);
 }
@@ -147,6 +148,9 @@ function guess(value) {
     currentScore++;
     document.getElementById("score").innerText = currentScore;
 
+    // Adds correctly guessed icon id to guessed list
+    guessedIds.push(correctIconId);
+
     // Reduces guessing time for next guess
     timeForQuestion -= gamemodeProperties[currentGamemode].timeReduction;
     if(timeForQuestion < gamemodeProperties[currentGamemode].minimumTime) {
@@ -157,4 +161,17 @@ function guess(value) {
   else {
     stopGame();
   }
+}
+function updateStats() {
+  console.log("updating stats")
+  updateUniqueIcons(guessedIds);
+
+  // Update Highscore
+  if (currentScore > highscore) {
+    setHighscore(currentScore, currentGamemode);
+  }
+
+  updateRoundsPlayed(1, currentGamemode);
+  updateTimePlayed(totalGameTime, currentGamemode);
+  updateCorrectGuesses(guessedIds.length, currentGamemode);
 }

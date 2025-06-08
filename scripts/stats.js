@@ -1,26 +1,29 @@
-function updateUniqueIcons(value) {
-  ls.stats.icons[value] = 1;
+function updateUniqueIcons(list) {
+  for(id of list)
+    console.log(id);
+    ls.stats.icons[id] = 1;
+  updateLocalStorage();
 }
 
-function updateHighscore(value, gamemode) {
+function setHighscore(value, gamemode) {
   highscore = value;
   ls.stats.highscore[gamemode] = value;
-  displayedHighscore.innerText = highscore;
+  displayedHighscore.innerText = highscore; // Display new highscore in the UI
   updateLocalStorage();
 }
 
 function updateTimePlayed(value, gamemode) {
-  ls.stats.time[gamemode] = value;
+  ls.stats.time[gamemode] += value;
   updateLocalStorage();
 }
 
 function updateRoundsPlayed(value, gamemode) {
-  ls.stats.rounds[gamemode] = value;
+  ls.stats.rounds[gamemode] += value;
   updateLocalStorage();
 }
 
 function updateCorrectGuesses(value, gamemode) {
-  ls.stats.guesses[gamemode] = value;
+  ls.stats.guesses[gamemode] += value;
   updateLocalStorage();
 }
 

@@ -27,7 +27,7 @@ function updateLocalStorage() {
 function localStorageInit() {
   ls = {
     settings: {
-      gamemode: 1, // Set default gamemode to Medium
+      gamemode: 3, // Set default gamemode to All Icons
       theme: "auto", // Set default theme to Auto
     },
     stats: {
