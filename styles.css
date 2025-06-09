@@ -86,6 +86,9 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  a.text:hover {
+    color: var(--txt-main);
+  }
   #guess-form input.clickable:hover {
     margin-top: -0.125rem;
     margin-bottom: 0.125rem;
@@ -182,6 +185,11 @@ body {
 .text {
   width: 34rem;
   text-align: center;
+}
+a.text {
+  width: fit-content;
+  color: var(--txt-light);
+  text-decoration: underline;
 }
 .page-info {
   font-family: sans-serif;
