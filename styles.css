@@ -98,7 +98,7 @@
   .ui-button-secondary:hover {
     background-color: var(--bg-container);
   }
-  .ui-button-warning:hover {
+  .ui-button-alternate:hover {
     color: var(--txt-main);
     border: 0.125rem dashed var(--txt-main);
   }
@@ -114,7 +114,7 @@ body {
   margin: 0;
   font-family: 'Roboto Mono', monospace;
   filter: hue-rotate(var(--random-hue));
-  background-color: black;
+  background-color: var(--bg-main);
 
   &::selection {
     color: var(--bg-main);
@@ -179,6 +179,17 @@ body {
   font-weight: 700;
   text-align: center;
 }
+.text {
+  width: 34rem;
+  text-align: center;
+}
+.page-info {
+  font-family: sans-serif;
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--txt-light);
+}
 
 .game {
   display: flex;
@@ -192,18 +203,20 @@ body {
 .stats {
   display: flex;
   align-items: space-between;
-  gap: 3rem;
   font-size: 1rem;
   font-weight: 500;
   font-style: italic;
 }
-#score, #highscore, #gamemode {
-  font-weight: 700;
-}
+.stats span.l {text-align: left;}
+.stats span.c {text-align: center;}
+.stats span.r {text-align: right;}
+.stats span {width: 9rem;}
+#score, #highscore, #gamemode {font-weight: 700;}
+#gamemode {font-style: normal;}
 
 #icon-text {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 500;
   padding: 1rem;
   width: calc(100% - 2rem);
@@ -292,7 +305,7 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
-.ui-button-warning {
+.ui-button-alternate {
   margin: 1rem 0;
   width: 13rem;
   padding: 0.5rem 0;

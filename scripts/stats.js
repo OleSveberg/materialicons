@@ -65,10 +65,10 @@ function formatTime(value) {
   }
 
   let hours = Math.floor(seconds / 3_600);
-  let minutes = Math.floor(seconds / 60) % 3_600;
+  let minutes = Math.floor(seconds / 60) % 60;
   seconds = seconds % 60;
 
-  return `${hours}h ${String(minutes).padStart(2, "0")}m ${String(seconds).padStart(2, "0")}s`;
+  return `${hours}h ${String(minutes).padStart(2, "0")}m`;
 }
 function sumItems(list) {
   let sum = 0;

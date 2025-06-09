@@ -1,5 +1,7 @@
 // Overlay Elements
 const overlay = document.getElementById("overlay");
+const aboutOverlay = document.getElementById("about-overlay");
+const shareOverlay = document.getElementById("share-overlay");
 const settingsOverlay = document.getElementById("settings-overlay");
 const pauseOverlay = document.getElementById("pause-overlay");
 const statsOverlay = document.getElementById("stats-overlay");
@@ -32,6 +34,7 @@ const themeSettingButtons = document.querySelectorAll("input[name='theme']");
 
 // Gameplay info
 const displayedScore = document.getElementById("score");
+const displayGamemode = document.getElementById("gamemode");
 const displayedHighscore = document.getElementById("highscore");
 const timeRemainingBar = document.getElementById("time-bar");
 // Gameplay elements
@@ -50,6 +53,7 @@ const guessingButtons = [
 
 function loadUIElements() {
   displayedScore.innerText = "-";
+  displayGamemode.innerText = "["+ gamemodeProperties[currentGamemode].name +"]";
   displayedHighscore.innerText = highscore;
 }
 
@@ -68,7 +72,9 @@ function toggleOverlay(action) {
   for (const child of overlay.children) {
     child.hidden = true;
   }
-  if (action == "settings") settingsOverlay.hidden = false;
+  if (action == "about") aboutOverlay.hidden = false;
+  else if (action == "share") shareOverlay.hidden = false;
+  else if (action == "settings") settingsOverlay.hidden = false;
   else if (action == "pause") pauseOverlay.hidden = false;
   else if (action == "stats") {
     loadStatPage();
@@ -76,4 +82,10 @@ function toggleOverlay(action) {
   }
   else return;
   overlay.hidden = false;
+}
+
+function copyURL() {
+  url = "https://olesveberg.github.io/materialicons/";
+  navigator.clipboard.writeText(url);
+  window.alert("URL copied to clipboard.");
 }

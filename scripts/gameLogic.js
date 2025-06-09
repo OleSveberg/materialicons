@@ -3,29 +3,29 @@ const numberOfAlternatives = 8; // How many guessing options will be displayed
 const gamemodeProperties = [
   {
     name: "Easy",
-    defaultTime: 12_000, // Time per guess
-    timeReduction: 60, // Reduction of time per guess after each correct guess
-    minimumTime: 3_000, // Minimum time per guess after reducing guessing time
+    defaultTime: 12_000, // Time per guess in ms
+    timeReduction: 320, // Reduction of time per guess after each correct guess in ms
+    minimumTime: 3_000, // Minimum time per guess after reducing guessing time in ms
     iconList: easyIconList.slice() // Filtered list of icons
   },
   {
     name: "Normal",
     defaultTime: 10_000,
-    timeReduction: 60,
+    timeReduction: 280,
     minimumTime: 2_500,
     iconList: normalIconList.slice()
   },
   {
     name: "Hard",
     defaultTime: 8_000,
-    timeReduction: 40,
+    timeReduction: 280,
     minimumTime: 2_000,
     iconList: hardIconList.slice()
   },
   {
     name: "All Icons",
     defaultTime: 10_000,
-    timeReduction: 20,
+    timeReduction: 200,
     minimumTime: 2_000,
     iconList: gradedIconList.slice()
   },

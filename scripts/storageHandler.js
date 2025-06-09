@@ -42,7 +42,7 @@ function localStorageInit() {
 }
 
 function deleteData() {
-  if (confirm("Are you sure you want to reset all data?")) {
+  if (confirm("Are you sure you want to reset all saved data?")) {
     localStorageInit();
     loadApp();
   }

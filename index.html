@@ -19,6 +19,25 @@
 </head>
 <body>
   <div id="overlay" class="overlay" hidden>
+    <div id="about-overlay" class="overlay-page">
+      <span class="overlay-title">About</span>
+      <div class="overlay-content">
+        <span class="text">I was working with Google's Material Icons and thought some of them had quite unintuitive names, so I made this game to cope with it.</span>
+        <br>
+        <span class="text">The goal is to guess which of the icons belong to the displayed name, but be sure to figure it out before the time runs out!</span>
+        <br>
+        <span class="page-info">© 2025 Ole Sveberg</span>
+      </div>
+      <input type="button" class="ui-button" value="Close" onclick="toggleOverlay()">
+    </div>
+    <div id="share-overlay" class="overlay-page">
+      <span class="overlay-title">Share</span>
+      <div class="overlay-content">
+        <span class="text">https://olesveberg.github.io/materialicons/</span>
+        <input type="button" class="ui-button-alternate" value="Copy URL" onclick="copyURL()">
+      </div>
+      <input type="button" class="ui-button" value="Close" onclick="toggleOverlay()">
+    </div>
     <div id="settings-overlay" class="overlay-page">
       <span class="overlay-title">Settings</span>
       <div class="overlay-content">
@@ -33,7 +52,7 @@
           <input type="radio" name="gamemode" id="gamemode-3" value="3" hidden>
           <label for="gamemode-3" class="gamemode-label">All Icons</label>
         </form>
-        <span class="setting-description">Theme & Colors</span>
+        <span class="setting-description">Color Theme</span>
         <form class="theme-form">
           <input type="radio" name="theme" id="theme-light" value="light" hidden>
           <label for="theme-light" class="theme-label">Light</label>
@@ -121,8 +140,9 @@
       </div>
 
       <div class="stats">
-        <span>Score: <span id="score">-</span></span>
-        <span>Highcore: <span id="highscore">0</span></span>
+        <span class="l">Score: <span id="score">-</span></span>
+        <span class="c" id="gamemode">[All Icons]</span>
+        <span class="r">Highscore: <span id="highscore">0</span></span>
       </div>
       <div class="time-remaining-bar">
         <div id="time-bar"></div>
@@ -140,10 +160,10 @@
       <div class="control-buttons">
         <div id="menu-buttons" class="control-button-group">
           <input type="button" class="material-icons ui-button-secondary" value="leaderboard" onclick="toggleOverlay('stats')" title="Stats">
-          <!-- <input type="button" class="material-icons ui-button-secondary" value="question_mark" onclick="console.log('help')" title="Help"> -->
+          <input type="button" class="material-icons ui-button-secondary" value="share" onclick="toggleOverlay('share')" title="Share">
           <input type="button" id="start-button" class="ui-button" value="Start" onclick="startGame()">
-          <!-- <input type="button" class="material-icons ui-button-secondary" value="question_mark" onclick="console.log('help')" title="Help"> -->
-          <input type="button" class="material-icons ui-button-secondary" value="settings" onclick="toggleOverlay('settings')" title="Open Settings">
+          <input type="button" class="material-icons ui-button-secondary" value="question_mark" onclick="toggleOverlay('about')" title="About">
+          <input type="button" class="material-icons ui-button-secondary" value="settings" onclick="toggleOverlay('settings')" title="Settings">
         </div>
         <div id="game-buttons" class="control-button-group" hidden>
           <input type="button" class="ui-button" value="Pause" onclick="pauseGame()">

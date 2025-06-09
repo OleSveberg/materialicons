@@ -12,6 +12,7 @@ function loadSettings() {
 function setGamemode(value) {
   currentGamemode = value;
   setHighscore(ls.stats.highscore[currentGamemode], currentGamemode);
+  loadUIElements();
 }
 
 function setTheme(value) {
