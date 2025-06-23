@@ -49,40 +49,26 @@
   }
 }
 
-@media screen and (max-width: 620px) {
-  :root {
-    font-size: 14px;
-  }
+@media screen and (max-width: 620px), (max-height: 760px) {
+  :root {font-size: 14px;}
 }
-@media screen and (max-width: 530px) {
-  :root {
-    font-size: 12px;
-  }
+@media screen and (max-width: 530px), (max-height: 660px) {
+  :root {font-size: 12px;}
 }
-@media screen and (max-width: 450px) {
-  :root {
-    font-size: 10px;
-  }
+@media screen and (max-width: 450px), (max-height: 560px) {
+  :root {font-size: 10px;}
 }
-@media screen and (max-width: 380px) {
-  :root {
-    font-size: 8px;
-  }
+@media screen and (max-width: 380px), (max-height: 470px) {
+  :root {font-size: 8px;}
 }
-@media screen and (max-width: 300px) {
-  :root {
-    font-size: 7px;
-  }
+@media screen and (max-width: 300px), (max-height: 380px) {
+  :root {font-size: 7px;}
 }
-@media screen and (max-width: 260px) {
-  :root {
-    font-size: 6px;
-  }
+@media screen and (max-width: 260px), (max-height: 320px) {
+  :root {font-size: 6px;}
 }
-@media screen and (max-width: 230px) {
-  :root {
-    font-size: 5px;
-  }
+@media screen and (max-width: 230px), (max-height: 280px) {
+  :root {font-size: 5px;}
 }
 
 @media (hover: hover) and (pointer: fine) {
